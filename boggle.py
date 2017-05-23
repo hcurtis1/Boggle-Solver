@@ -32,6 +32,7 @@ def path_to_word(grid, path):
 def search(grid, dictionary):
     neighbours = all_grid_neighbours(grid)
     paths = []
+
     def do_search(path):
         word = path_to_word(grid, path)
         if word in dictionary:
@@ -47,3 +48,7 @@ def search(grid, dictionary):
     for path in paths:
         words.append(path_to_word(grid, path))
     return set(words)
+
+def get_dictionary(words):
+    with open(words) as f:
+        return [w.strip().upper() for w in f]
