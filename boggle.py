@@ -28,6 +28,8 @@ def all_grid_neighbours(grid):
 def path_to_word(grid, path):
     return ''.join([grid[p] for p in path])
 
+def is_a_real_word(word, dictionary):
+    return word in dictionary
 
 def search(grid, dictionary):
     neighbours = all_grid_neighbours(grid)
@@ -35,7 +37,7 @@ def search(grid, dictionary):
 
     def do_search(path):
         word = path_to_word(grid, path)
-        if word in dictionary:
+        if is_a_real_word(word, dictionary):
             paths.append(path)
         for next_pos in neighbours[path[-1]]:
             if next_pos not in path:
@@ -51,7 +53,7 @@ def search(grid, dictionary):
 
 def get_dictionary(words):
     with open(words) as f:
-        return [w.strip().upper() for w in f]
+        return {w.strip().upper() for w in f}
 
 def display_words(words):
     for word in words:
