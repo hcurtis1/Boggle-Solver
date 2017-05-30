@@ -74,7 +74,7 @@ def display_words(words):
     print "Found {0} words".format(len(words))
 
 def main():
-    grid = make_grid(3, 3)
+    grid = make_grid(4, 4)
     dictionary = get_dictionary('/usr/share/dict/words')
     words = search(grid, dictionary)
     display_words(words)
